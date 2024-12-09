@@ -69,7 +69,7 @@ public class MyString {
         String n="";
         for(int i=0;i<str.length();i++)
         {
-            n=n+" ";
+            n=str.charAt(i)+" ";
         }
         return n;
     }
