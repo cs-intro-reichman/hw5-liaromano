@@ -116,11 +116,18 @@ public class MyString {
     public static String remove(String str1, String str2) {
        //// Replace the following statement with your code
        String s="";
-       for(int i=0;i<str2.length();i++)
+       for(int i=0;i<str1.length();i++)
        {
-        if(str1.indexOf(str2.charAt(i))!=-1)
+        for(int j=0;j<str2.length();j++)
         {
-            s=s+str2.charAt(i);
+            if(str1.charAt(i)!=str2.charAt(j))
+            {
+                s=s+str2.charAt(j);
+            }
+            else
+            {
+                str2=s;
+            }
         }
        } 
        return s;
