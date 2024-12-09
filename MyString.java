@@ -67,6 +67,10 @@ public class MyString {
     public static String spacedString(String str) {
         //// Replace the following statement with your code
         String n=" ";
+        if(str.length()==0)
+        {
+            return str;
+        }
         for(int i=0;i<str.length()-1;i++)
         {
             n=n+str.charAt(i)+" ";
@@ -112,7 +116,7 @@ public class MyString {
        String s="";
        for(int i=0;i<str2.length();i++)
        {
-        if(str1.indexOf(str2.charAt(i))==-1)
+        if(str1.indexOf(str2.charAt(i))!=-1)
         {
             s=s+str2.charAt(i);
         }
