@@ -66,16 +66,18 @@ public class MyString {
      */
     public static String spacedString(String str) {
         //// Replace the following statement with your code
-        String n=" ";
-        if(str.length()==0)
+        String n="";
+        for(int i=0;i<str.length();i++)
         {
-            return str;
+            if(i!=str.length()-1)
+            {
+                n=n+ str.charAt(i)+" ";
+            }
+            if(i==str.length()-1)
+            {
+                n=n+ str.charAt(i);
+            }
         }
-        for(int i=0;i<str.length()-1;i++)
-        {
-            n=n+str.charAt(i)+" ";
-        }
-        n=n+str.charAt(str.length()-1);
         return n;
     }
   
