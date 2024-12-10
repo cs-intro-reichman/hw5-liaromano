@@ -124,7 +124,7 @@ public class MyString {
         {
             j++;  
         }
-        snew= snew.substring(j)+ snew.substring(j+1);
+        snew= snew.substring(0,j)+ snew.substring(j+1);
     }
     return snew;
     }
