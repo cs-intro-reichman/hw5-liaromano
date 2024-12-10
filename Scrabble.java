@@ -79,7 +79,7 @@ public class Scrabble {
 		{
 			score= score+50;
 		}
-		if(subsetOf(word, s))
+		if(subsetOf(s, word))
 		{
 			score= score+1000;
 		}
