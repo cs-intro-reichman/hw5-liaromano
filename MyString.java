@@ -116,21 +116,24 @@ public class MyString {
     public static String remove(String str1, String str2) {
        //// Replace the following statement with your code
        String s="";
-       for(int i=0;i<str1.length();i++)
+       for (int i = 0; i < str1.length(); i++) 
        {
-        for(int j=0;j<str2.length();j++)
-        {
-            if(str1.charAt(i)!=str2.charAt(j))
-            {
-                s=s+str2.charAt(j);
-            }
-            else
-            {
-                str2=s;
+        char c = str1.charAt(i);
+        boolean isInStr2 = false;
+        for (int j = 0; j < str2.length(); j++)
+         {
+            if (str2.charAt(j) == c)
+             {
+                isInStr2 = true;
+                break;
             }
         }
-       } 
-       return s;
+        if (!isInStr2) 
+        {
+            s=s+ c;
+        }
+    }
+    return s;
     }
 
     /**
@@ -149,3 +152,4 @@ public class MyString {
          return result;
     }
 }
+

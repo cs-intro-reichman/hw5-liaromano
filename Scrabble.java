@@ -49,7 +49,14 @@ public class Scrabble {
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
 		//// Replace the following statement with your code
-		return false;
+		for(int i=0;i<NUM_OF_WORDS;i++)
+		{
+			if(word==DICTIONARY[i])
+			{
+				return true;
+			}
+		}
+			return false;
 	}
 	
 	// Returns the Scrabble score of the given word.
@@ -57,16 +64,82 @@ public class Scrabble {
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
 		//// Replace the following statement with your code
-		return 0;
-	}
+		int score=0;
+		String s="runi";
+		char c;
+		int index=0;
+		for(int i=0;i<word.length();i++)
+		{
+			c=word.charAt(i);
+			index=c-'a';
+			score= score+ SCRABBLE_LETTER_VALUES[index];
+		}
+		score=score*word.length();
+		if(word.length()==HAND_SIZE)
+		{
+			score=50;
+		}
+		if(subsetOf(s, word))
+		{
+			score=1000;
+		}
+		return score;
+		}
+
+	public static int countChar(String str, char ch) {
+        //// Replace the following statement with your code
+        int count=0;
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)==ch)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+	public static boolean subsetOf(String str1, String str2) {
+		//// Replace the following statement with your code
+		for(int i=0;i<str1.length();i++)
+		{
+		   if(countChar(str1,str1.charAt(i))!=countChar(str2,str2.charAt(i)))
+		   {
+			   return false;
+		   }
+
+	   }
+	   return true;
+   }
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
 		//// Replace the following statement with your code
+		String HANDSIZE= randomStringOfLetters(HAND_SIZE);
+		HANDSIZE= insertRandomly('a', HANDSIZE);
+		HANDSIZE= insertRandomly('e', HANDSIZE);
 		return null;
 	}
+	public static String randomStringOfLetters(int n) {
+        //// Replace the following statement with your code
+        String s="";
+        char c;
+        for(int i=0;i<n;i++)
+        {
+            c=(char)((Math.random()*26)+97);
+            s=s+c;
+
+        }
+        return s;
+    }
+	public static String insertRandomly(char ch, String str) {
+		// Generate a random index between 0 and str.length()
+		int randomIndex = (int) (Math.random() * (str.length() + 1));
+		// Insert the character at the random index
+		String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
+		return result;
+   }
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
     // 1. The letters in the word are removed from the hand, which becomes smaller.
@@ -75,6 +148,7 @@ public class Scrabble {
 	public static void playHand(String hand) {
 		int n = hand.length();
 		int score = 0;
+		int sum=0;
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
@@ -87,14 +161,51 @@ public class Scrabble {
 			String input = in.readString();
 			//// Replace the following break statement with code
 			//// that completes the hand playing loop
-			break;
+			if(input.charAt(0)=='.')
+			{
+				break;
+			}	
+			else if(!isWordInDictionary(input))
+			{
+				System.out.println("No such word in the dictionary. Try again.");
+				break;
+			}
+			else
+			{
+				hand=remove(input, hand);
+				score= wordScore(input);
+				sum=sum+score;
+				System.out.println(input+" earned "+score+" points. Score: "+sum+" points");
+			}
 		}
 		if (hand.length() == 0) {
-	        System.out.println("Ran out of letters. Total score: " + score + " points");
+	        System.out.println("Ran out of letters. Total score: " + sum + " points");
 		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
+			System.out.println("End of hand. Total score: " + sum + " points");
 		}
 	}
+	public static String remove(String str1, String str2) {
+		//// Replace the following statement with your code
+		String s="";
+		for (int i = 0; i < str1.length(); i++) 
+		{
+		 char c = str1.charAt(i);
+		 boolean isInStr2 = false;
+		 for (int j = 0; j < str2.length(); j++)
+		  {
+			 if (str2.charAt(j) == c)
+			  {
+				 isInStr2 = true;
+				 break;
+			 }
+		 }
+		 if (!isInStr2) 
+		 {
+			 s=s+ c;
+		 }
+	 }
+	 return s;
+	 }
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
@@ -110,9 +221,20 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
+			if(input.charAt(0)!='e' && input.charAt(0)!=0)
+			{
+				System.out.println("error");
+			}
+			else if(input.charAt(0)=='e')
+			{
+				break;
+			}
+			else if(input.charAt(0)=='n')
+			{
+				playHand(createHand());
+			}
 			//// Replace the following break statement with code
 			//// that completes the game playing loop
-			break;
 		}
 	}
 
