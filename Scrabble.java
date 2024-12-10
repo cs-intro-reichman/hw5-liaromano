@@ -119,7 +119,7 @@ public class Scrabble {
 		String HANDSIZE= randomStringOfLetters(HAND_SIZE);
 		HANDSIZE= insertRandomly('a', HANDSIZE);
 		HANDSIZE= insertRandomly('e', HANDSIZE);
-		return null;
+		return HANDSIZE;
 	}
 	public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
@@ -186,25 +186,18 @@ public class Scrabble {
 	}
 	public static String remove(String str1, String str2) {
 		//// Replace the following statement with your code
-		String s="";
-		for (int i = 0; i < str1.length(); i++) 
-		{
-		 char c = str1.charAt(i);
-		 boolean isInStr2 = false;
-		 for (int j = 0; j < str2.length(); j++)
-		  {
-			 if (str2.charAt(j) == c)
-			  {
-				 isInStr2 = true;
-				 break;
-			 }
-		 }
-		 if (!isInStr2) 
+		int j;
+		String snew= str1;
+		for(int i=0;i<str2.length();i++)
+	 {
+		 j=0;
+		 while (snew.charAt(j)!=str2.charAt(i))
 		 {
-			 s=s+ c;
+			 j++;  
 		 }
+		 snew= snew.substring(j)+ snew.substring(j+1);
 	 }
-	 return s;
+	 return snew;
 	 }
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
