@@ -79,7 +79,7 @@ public class Scrabble {
 		{
 			score=50;
 		}
-		if(subsetOf(s, word))
+		if(subsetOf(word, s))
 		{
 			score=1000;
 		}
@@ -172,7 +172,7 @@ public class Scrabble {
 			}
 			else
 			{
-				hand=remove(input, hand);
+				hand=remove(hand, input);
 				score= wordScore(input);
 				sum=sum+score;
 				System.out.println(input+" earned "+score+" points. Score: "+sum+" points");
