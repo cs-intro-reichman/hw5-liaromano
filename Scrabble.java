@@ -71,17 +71,17 @@ public class Scrabble {
 		for(int i=0;i<word.length();i++)
 		{
 			c=word.charAt(i);
-			index=c-'a';
+			index= c-'a';
 			score= score+ SCRABBLE_LETTER_VALUES[index];
 		}
 		score=score*word.length();
 		if(word.length()==HAND_SIZE)
 		{
-			score=50;
+			score= score+50;
 		}
 		if(subsetOf(word, s))
 		{
-			score=1000;
+			score= score+1000;
 		}
 		return score;
 		}
@@ -116,7 +116,7 @@ public class Scrabble {
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
 		//// Replace the following statement with your code
-		String HANDSIZE= randomStringOfLetters(HAND_SIZE);
+		String HANDSIZE= randomStringOfLetters(HAND_SIZE-2);
 		HANDSIZE= insertRandomly('a', HANDSIZE);
 		HANDSIZE= insertRandomly('e', HANDSIZE);
 		return HANDSIZE;
