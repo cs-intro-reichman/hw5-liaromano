@@ -51,7 +51,7 @@ public class Scrabble {
 		//// Replace the following statement with your code
 		for(int i=0;i<DICTIONARY.length;i++)
 		{
-			if(word==DICTIONARY[i])
+			if(word.equals(DICTIONARY[i]))
 			{
 				return true;
 			}
@@ -142,16 +142,13 @@ public class Scrabble {
 			}
 			else 
 			{
-				if(isWordInDictionary(input))
-			{
+				if(!isWordInDictionary(input)){
+					System.out.println("No such word in the dictionary. Try again.");
+				}else{
 				hand=MyString.remove(hand, input);
 				score= wordScore(input);
 				sum=sum+score;
 				System.out.println(input+" earned "+score+" points. Score: "+sum+" points\n");
-			}
-			else
-			{
-				System.out.println("No such word in the dictionary. Try again.");
 			}
 		}
 	}
@@ -178,11 +175,7 @@ public class Scrabble {
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
 			String newWord="";
-			if(input.charAt(0)!='e' && input.charAt(0)!=0)
-			{
-				System.out.println("error");
-			}
-			else if(input.charAt(0)=='e')
+			 if(input.charAt(0)=='e')
 			{
 				break;
 			}
@@ -203,7 +196,7 @@ public class Scrabble {
 		////testScrabbleScore();    
 		////testCreateHands();  
 		////testPlayHands();
-		////playGame();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
