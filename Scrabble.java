@@ -49,7 +49,7 @@ public class Scrabble {
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
 		//// Replace the following statement with your code
-		for(int i=0;i<NUM_OF_WORDS;i++)
+		for(int i=0;i<DICTIONARY.length;i++)
 		{
 			if(word==DICTIONARY[i])
 			{
@@ -79,30 +79,17 @@ public class Scrabble {
 		{
 			score= score+50;
 		}
-		if(subsetOf(word,s))
+		if(MyString.subsetOf(s,word))
 		{
 			score= score+1000;
 		}
 		return score;
 		}
-
-	public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        int count=0;
-        for(int i=0;i<str.length();i++)
-        {
-            if(str.charAt(i)==ch)
-            {
-                count++;
-            }
-        }
-        return count;
-    }
 	public static boolean subsetOf(String str1, String str2) {
 		//// Replace the following statement with your code
 		for(int i=0;i<str1.length();i++)
 		{
-		   if(countChar(str1,str1.charAt(i))!=countChar(str2,str2.charAt(i)))
+		   if(MyString.countChar(str1,str1.charAt(i))!=MyString.countChar(str2,str2.charAt(i)))
 		   {
 			   return false;
 		   }
