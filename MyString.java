@@ -21,7 +21,15 @@ public class MyString {
      */
     public static int countChar(String str, char ch) {
         //// Replace the following statement with your code
-        return 0;
+        int count=0;
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)==ch)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -37,7 +45,23 @@ public class MyString {
      */
     public static boolean subsetOf(String str1, String str2) {
          //// Replace the following statement with your code
-        return false;
+         if(str1=="")
+         {
+         return true;
+         }
+         char c;
+         int index;
+         for(int i=0;i<str1.length();i++)
+         {
+            c=str1.charAt(i);
+            index= str2.indexOf(c);
+            if(index==-1)
+            {
+                return false;
+            }
+            str2=str2.substring(0, index)+ str2.substring(index+1);
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -50,7 +74,19 @@ public class MyString {
      */
     public static String spacedString(String str) {
         //// Replace the following statement with your code
-        return null;
+        String n="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(i!=str.length()-1)
+            {
+                n=n+ str.charAt(i)+" ";
+            }
+            if(i==str.length()-1)
+            {
+                n=n+ str.charAt(i);
+            }
+        }
+        return n;
     }
   
     /**
@@ -65,7 +101,15 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
-        return null;
+        String s="";
+        char c;
+        for(int i=0;i<n;i++)
+        {
+            c=(char)((Math.random()*26)+97);
+            s=s+c;
+
+        }
+        return s;
     }
 
     /**
@@ -79,7 +123,18 @@ public class MyString {
      */
     public static String remove(String str1, String str2) {
        //// Replace the following statement with your code
-        return null;
+       int j;
+       String snew= str1;
+       for(int i=0;i<str2.length();i++)
+    {
+        j=0;
+        while (snew.charAt(j)!=str2.charAt(i))
+        {
+            j++;  
+        }
+        snew= snew.substring(0,j)+ snew.substring(j+1);
+    }
+    return snew;
     }
 
     /**
@@ -96,5 +151,6 @@ public class MyString {
          // Insert the character at the random index
          String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
          return result;
-    }    
+    }
 }
+
