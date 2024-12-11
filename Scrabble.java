@@ -66,13 +66,9 @@ public class Scrabble {
 		//// Replace the following statement with your code
 		int score=0;
 		String s="runi";
-		char c;
-		int index=0;
 		for(int i=0;i<word.length();i++)
 		{
-			c=word.charAt(i);
-			index= c-'a';
-			score= score+ SCRABBLE_LETTER_VALUES[index];
+			score= score+ SCRABBLE_LETTER_VALUES[word.charAt(i)-97];
 		}
 		score=score*word.length();
 		if(word.length()==HAND_SIZE)
@@ -85,18 +81,6 @@ public class Scrabble {
 		}
 		return score;
 		}
-	public static boolean subsetOf(String str1, String str2) {
-		//// Replace the following statement with your code
-		for(int i=0;i<str1.length();i++)
-		{
-		   if(MyString.countChar(str1,str1.charAt(i))!=MyString.countChar(str2,str2.charAt(i)))
-		   {
-			   return false;
-		   }
-
-	   }
-	   return true;
-   }
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
@@ -162,7 +146,7 @@ public class Scrabble {
 				hand=remove(hand, input);
 				score= wordScore(input);
 				sum=sum+score;
-				System.out.println(input+" earned "+score+" points. Score: "+sum+" points");
+				System.out.println(input+" earned "+score+" points. Score: "+sum+" points\n");
 			}
 		}
 		if (hand.length() == 0) {
@@ -201,6 +185,7 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
+			String newWord="";
 			if(input.charAt(0)!='e' && input.charAt(0)!=0)
 			{
 				System.out.println("error");
@@ -211,7 +196,9 @@ public class Scrabble {
 			}
 			else if(input.charAt(0)=='n')
 			{
-				playHand(createHand());
+				newWord= createHand();
+				System.out.println(newWord);
+				playHand(newWord);
 			}
 			//// Replace the following break statement with code
 			//// that completes the game playing loop
