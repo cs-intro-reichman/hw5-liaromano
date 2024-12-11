@@ -136,43 +136,32 @@ public class Scrabble {
 			{
 				break;
 			}	
-			else if(!isWordInDictionary(input))
-			{
-				System.out.println("No such word in the dictionary. Try again.");
-			}
 			else if(!MyString.subsetOf(input, hand))
 			{
 				System.out.println("Invalid word. Try again.");
 			}
-			else if(MyString.subsetOf(input, hand) && isWordInDictionary(input))
+			else 
+			{
+				if(isWordInDictionary(input))
 			{
 				hand=MyString.remove(hand, input);
 				score= wordScore(input);
 				sum=sum+score;
 				System.out.println(input+" earned "+score+" points. Score: "+sum+" points\n");
 			}
+			else
+			{
+				System.out.println("No such word in the dictionary. Try again.");
+			}
 		}
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + sum + " points");
-		} else {
+		} else 
+		{
 			System.out.println("End of hand. Total score: " + sum + " points");
 		}
 	}
-	public static String remove(String str1, String str2) {
-		//// Replace the following statement with your code
-		int j;
-		String snew= str1;
-		for(int i=0;i<str2.length();i++)
-	 {
-		 j=0;
-		 while (snew.charAt(j)!=str2.charAt(i))
-		 {
-			 j++;  
-		 }
-		 snew= snew.substring(0,j)+ snew.substring(j+1);
-	 }
-	 return snew;
-	 }
+}
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
