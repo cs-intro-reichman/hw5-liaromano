@@ -45,13 +45,21 @@ public class MyString {
      */
     public static boolean subsetOf(String str1, String str2) {
          //// Replace the following statement with your code
+         if(str1=="")
+         {
+         return true;
+         }
+         char c;
+         int index;
          for(int i=0;i<str1.length();i++)
          {
-            if(countChar(str1,str1.charAt(i))!=countChar(str2,str2.charAt(i)))
+            c=str1.charAt(i);
+            index= str2.indexOf(c);
+            if(index==-1)
             {
                 return false;
             }
-
+            str2=str2.substring(0, index)+ str2.substring(index+1);
         }
         return true;
     }
