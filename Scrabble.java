@@ -154,6 +154,7 @@ public class Scrabble {
 				System.out.println("No such word in the dictionary. Try again.");
 			}
 		}
+	}
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + sum + " points");
 		} else 
@@ -161,7 +162,6 @@ public class Scrabble {
 			System.out.println("End of hand. Total score: " + sum + " points");
 		}
 	}
-}
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
